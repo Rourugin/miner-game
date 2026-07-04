@@ -63,7 +63,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 7.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tuyoq"]
@@ -76,9 +76,9 @@ script = ExtResource("1_gmlin")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1484892602]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
-frame_progress = 0.6517043
+frame_progress = 0.283321
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=544572773]
 position = Vector2(-0.5, 1.5)

@@ -111,5 +111,11 @@ shape = SubResource("RectangleShape2D_ad2a8")
 position = Vector2(-87, 0)
 
 [connection signal="body_entered" from="Areas/GroundArea" to="." method="_on_ground_area_body_entered"]
+[connection signal="body_entered" from="Areas/UpgradeAreas/PickaxeArea" to="." method="_on_pickaxe_area_body_entered"]
+[connection signal="body_exited" from="Areas/UpgradeAreas/PickaxeArea" to="." method="_on_pickaxe_area_body_exited"]
+[connection signal="body_entered" from="Areas/UpgradeAreas/ReinforcementArea" to="." method="_on_reinforcement_area_body_entered"]
+[connection signal="body_exited" from="Areas/UpgradeAreas/ReinforcementArea" to="." method="_on_reinforcement_area_body_exited"]
+[connection signal="body_entered" from="Areas/UpgradeAreas/VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="Areas/UpgradeAreas/VisionArea" to="." method="_on_vision_area_body_exited"]
 
 [editable path="Player"]
