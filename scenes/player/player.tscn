@@ -78,13 +78,13 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.60149205
+frame_progress = 0.6517043
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=544572773]
 position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_tuyoq")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=581254449]
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=581254449]
 zoom = Vector2(3, 3)
 limit_left = -250
 limit_right = 250
