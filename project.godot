@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="ggggg13"
+run/main_scene="uid://bw3qpusdd5lik"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -41,11 +42,19 @@ down={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_render/layer_2="Ground"
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Surface"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 textures/decals/filter=0
