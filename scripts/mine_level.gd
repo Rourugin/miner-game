@@ -38,7 +38,7 @@ func _generate_ores() -> void:
 		#-7 is 0 depth
 		var available_resources: Array[OreData]
 		for resource in resources:
-			if resource.min_depth >= (cell.y + 7):
+			if resource.min_depth <= (cell.y + 7):
 				available_resources.append(resource)
 		
 		var random_ore_data = available_resources.pick_random()
@@ -65,11 +65,10 @@ func _get_resources() -> Array[OreData]:
 	var dir_path := "res://data"
 	var dir := DirAccess.open(dir_path)
 	var files := dir.get_files()
-	print(files)
 	
 	var resources: Array[OreData] = []
 	for file in files:
-		resources.append(load(file))
+		resources.append(load(dir_path + '/' + file))
 		
 	print(resources[0])
 	return resources

@@ -3,9 +3,12 @@
 [ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_xvdjc"]
 [ext_resource type="Texture2D" uid="uid://df6fx1327eejm" path="res://assets/graphics/ores/diamond.png" id="2_36lsj"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_36lsj"]
+atlas = ExtResource("2_36lsj")
+
 [resource]
 script = ExtResource("1_xvdjc")
-texture = ExtResource("2_36lsj")
+texture = SubResource("AtlasTexture_36lsj")
 max_health = 200
 rarity = 1.5
 min_depth = 900

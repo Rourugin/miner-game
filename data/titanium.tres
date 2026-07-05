@@ -3,9 +3,12 @@
 [ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_qtpkl"]
 [ext_resource type="Texture2D" uid="uid://dwwma22nij0kh" path="res://assets/graphics/ores/titanium.png" id="2_ytteh"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytteh"]
+atlas = ExtResource("2_ytteh")
+
 [resource]
 script = ExtResource("1_qtpkl")
-texture = ExtResource("2_ytteh")
+texture = SubResource("AtlasTexture_ytteh")
 max_health = 80
 rarity = 10.0
 min_depth = 300

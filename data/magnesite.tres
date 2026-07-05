@@ -3,9 +3,12 @@
 [ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_px6fv"]
 [ext_resource type="Texture2D" uid="uid://dq2jvilqsl6xy" path="res://assets/graphics/ores/magnesite.png" id="2_2rqlh"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rqlh"]
+atlas = ExtResource("2_2rqlh")
+
 [resource]
 script = ExtResource("1_px6fv")
-texture = ExtResource("2_2rqlh")
+texture = SubResource("AtlasTexture_2rqlh")
 max_health = 25
 rarity = 40.0
 min_depth = 50

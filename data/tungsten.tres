@@ -1,9 +1,14 @@
 [gd_resource type="Resource" script_class="OreData" format=3 uid="uid://dtpjgkedpjbxx"]
 
 [ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_wxsb5"]
+[ext_resource type="Texture2D" uid="uid://fjducai7qr2g" path="res://assets/graphics/ores/tungsten.png" id="2_ugbma"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugbma"]
+atlas = ExtResource("2_ugbma")
 
 [resource]
 script = ExtResource("1_wxsb5")
+texture = SubResource("AtlasTexture_ugbma")
 max_health = 65
 rarity = 12.0
 min_depth = 250

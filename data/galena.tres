@@ -3,9 +3,12 @@
 [ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_6358g"]
 [ext_resource type="Texture2D" uid="uid://bmlqf45pf1je0" path="res://assets/graphics/ores/galena.png" id="2_dsnne"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsnne"]
+atlas = ExtResource("2_dsnne")
+
 [resource]
 script = ExtResource("1_6358g")
-texture = ExtResource("2_dsnne")
+texture = SubResource("AtlasTexture_dsnne")
 max_health = 30
 rarity = 30.0
 min_depth = 80
