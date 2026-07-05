@@ -22,6 +22,7 @@ func _upgrade(area: Area2D) -> void:
 		"PickaxeArea":
 			if Globals.gold >= Globals.prices[0]:
 				Globals.gold -= Globals.prices[0]
+				Globals.pickaxe_damage += 1
 				Globals.prices[0] *= 3.0
 			elif Globals.gold < Globals.prices[0]:
 				print("Not enough money")

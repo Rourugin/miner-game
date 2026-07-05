@@ -3,30 +3,30 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
-var last_direction: Vector2
+@export var last_direction: Vector2
 
 
 func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("left", "right", "up", "down")
+	
 	_process_movement(direction)
-
 	move_and_slide()
 
 func _process_movement(direction: Vector2) -> void:
 	match direction:
 		Vector2.ZERO:
 			velocity = Vector2.ZERO
-			_play_animation("idle")
+			play_animation("idle")
 		Vector2.RIGHT, Vector2.LEFT:
 			velocity = direction * Globals.speed
 			last_direction = direction
-			_play_animation("run")
+			play_animation("run")
 		Vector2.UP, Vector2.DOWN:
 			if get_tree().current_scene.name == "MineLevel":
 				velocity = direction * Globals.speed
 				last_direction = direction
 		
-func _play_animation(anim: String) -> void:
+func play_animation(anim: String) -> void:
 	if anim == "idle":
 		animated_sprite_2d.play("idle")
 	elif anim == "run":

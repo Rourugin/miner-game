@@ -12,6 +12,10 @@ func _ready() -> void:
 	_generate_ores()
 	_ready_player()
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("interact"):
+		_break_ore()
+
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")
 
@@ -59,3 +63,6 @@ func _ready_player() -> void:
 	player_camera.zoom = Globals.zoom
 	player.global_position = $Markers/SpawnMarker.global_position
 	Globals.home_spawn_marker = false
+
+func _break_ore() -> void:
+	pass

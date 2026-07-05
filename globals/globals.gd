@@ -3,6 +3,7 @@ extends Node
 @onready var home_spawn_marker: bool = true
 
 var gold: float = 100.0
+var pickaxe_damage: int = 1
 var reinforcements: int = 0
 var zoom: Vector2 = Vector2(10.0, 10.0)
 var speed: float = 100.0
