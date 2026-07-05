@@ -10,7 +10,8 @@ func _ready() -> void:
 	player_camera.limit_left = -125
 	player_camera.limit_right = 200
 	player_camera.zoom = Vector2(6.0, 6.0)
-	player.global_position = $Markers/Marker2D.global_position
+	player.global_position = $Markers/SpawnMarker.global_position
+	Globals.home_spawn_marker = true
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and entered_area != null:

@@ -57,6 +57,8 @@ interact={
 2d_render/layer_2="Ground"
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Surface"
+2d_physics/layer_3="Pickaxe"
+2d_physics/layer_4="Ores"
 
 [physics]
 

@@ -1,5 +1,5 @@
 extends Node
 
-@onready var spawn_marker: String = "home"
+@onready var home_spawn_marker: bool = true
 
 var gold: int = 0

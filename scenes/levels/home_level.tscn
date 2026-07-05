@@ -107,7 +107,7 @@ collision_layer = 2
 position = Vector2(145.5, 0)
 shape = SubResource("RectangleShape2D_ad2a8")
 
-[node name="Marker2D" type="Marker2D" parent="Markers" parent_id_path=PackedInt32Array(1905416797) index="0" unique_id=2135142167]
+[node name="SpawnMarker" type="Marker2D" parent="Markers" parent_id_path=PackedInt32Array(1905416797) index="0" unique_id=2135142167]
 position = Vector2(-87, 0)
 
 [connection signal="body_entered" from="Areas/GroundArea" to="." method="_on_ground_area_body_entered"]
