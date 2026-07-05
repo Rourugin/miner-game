@@ -10,6 +10,6 @@ atlas = ExtResource("2_0hvbk")
 script = ExtResource("1_oye6m")
 texture = SubResource("AtlasTexture_k88g3")
 max_health = 5
-rarity = 100.0
+rarity = 100
 costs = 0.1
 metadata/_custom_type_script = "uid://c0yeni13w4l56"

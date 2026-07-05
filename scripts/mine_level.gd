@@ -29,15 +29,14 @@ func _generate_ores() -> void:
 			available_cells.append(cell)
 	
 	available_cells.shuffle()
-	var resources = _get_resources()
+	
 	
 	for i in range(available_cells.size()):
 		var cell: Vector2i = available_cells[i]
 		var ore := ORE_SCENE.instantiate()
 
-		#-7 is 0 depth
 		var available_resources: Array[OreData]
-		for resource in resources:
+		for resource in Globals.resources:
 			if resource.min_depth <= (cell.y + 7):
 				available_resources.append(resource)
 		
@@ -60,15 +59,3 @@ func _ready_player() -> void:
 	player_camera.zoom = Globals.zoom
 	player.global_position = $Markers/SpawnMarker.global_position
 	Globals.home_spawn_marker = false
-
-func _get_resources() -> Array[OreData]:
-	var dir_path := "res://data"
-	var dir := DirAccess.open(dir_path)
-	var files := dir.get_files()
-	
-	var resources: Array[OreData] = []
-	for file in files:
-		resources.append(load(dir_path + '/' + file))
-		
-	print(resources[0])
-	return resources
