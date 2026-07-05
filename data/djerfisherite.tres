@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="OreData" format=3 uid="uid://bnvdwra51bgn1"]
+
+[ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_tl17c"]
+[ext_resource type="Texture2D" uid="uid://cxrlel3phnort" path="res://assets/graphics/ores/djerfisherite.png" id="2_v6pws"]
+
+[resource]
+script = ExtResource("1_tl17c")
+texture = ExtResource("2_v6pws")
+max_health = 110
+rarity = 3.0
+min_depth = 700
+costs = 90.0
+metadata/_custom_type_script = "uid://c0yeni13w4l56"

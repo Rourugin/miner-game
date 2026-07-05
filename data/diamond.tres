@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="OreData" format=3 uid="uid://cucsjpk6uxq2y"]
+
+[ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_xvdjc"]
+[ext_resource type="Texture2D" uid="uid://df6fx1327eejm" path="res://assets/graphics/ores/diamond.png" id="2_36lsj"]
+
+[resource]
+script = ExtResource("1_xvdjc")
+texture = ExtResource("2_36lsj")
+max_health = 200
+rarity = 1.5
+min_depth = 900
+costs = 150.0
+metadata/_custom_type_script = "uid://c0yeni13w4l56"

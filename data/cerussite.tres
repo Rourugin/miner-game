@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="OreData" format=3 uid="uid://d3ponosr7s26q"]
+
+[ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_x5c72"]
+[ext_resource type="Texture2D" uid="uid://d0joubdppkqtk" path="res://assets/graphics/ores/cerussite.png" id="2_qb662"]
+
+[resource]
+script = ExtResource("1_x5c72")
+texture = ExtResource("2_qb662")
+max_health = 28
+rarity = 28.0
+min_depth = 90
+costs = 5.5
+metadata/_custom_type_script = "uid://c0yeni13w4l56"

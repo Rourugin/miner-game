@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bv1m4q0ofefc0"]
+
+[ext_resource type="Script" uid="uid://b3wyvn6y6lbsc" path="res://scripts/ore.gd" id="1_hbmog"]
+[ext_resource type="Texture2D" uid="uid://3xg0jbyhpk0j" path="res://assets/graphics/ores/stone.png" id="1_khohj"]
+[ext_resource type="Resource" uid="uid://cucsjpk6uxq2y" path="res://data/diamond.tres" id="2_hbmog"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cetrj"]
+size = Vector2(32, 32)
+
+[node name="Ore" type="StaticBody2D" unique_id=31777623]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_hbmog")
+data = ExtResource("2_hbmog")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=834352105]
+texture = ExtResource("1_khohj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=674472393]
+shape = SubResource("RectangleShape2D_cetrj")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="OreData" format=3 uid="uid://fxvc86y3on82"]
+
+[ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_xthv7"]
+[ext_resource type="Texture2D" uid="uid://t1hlbbqiya1a" path="res://assets/graphics/ores/iron.png" id="2_1clc7"]
+
+[resource]
+script = ExtResource("1_xthv7")
+texture = ExtResource("2_1clc7")
+max_health = 15
+rarity = 70.0
+min_depth = 10
+costs = 1.0
+metadata/_custom_type_script = "uid://c0yeni13w4l56"

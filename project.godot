@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Globals="*uid://d1xpcbjscich3"
 
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [input]
 
 right={
@@ -59,6 +63,7 @@ interact={
 2d_physics/layer_2="Surface"
 2d_physics/layer_3="Pickaxe"
 2d_physics/layer_4="Ores"
+2d_physics/layer_5="Objets"
 
 [physics]
 

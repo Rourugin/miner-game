@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="OreData" format=3 uid="uid://wey5138uu1a2"]
+
+[ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_cr1v7"]
+[ext_resource type="Texture2D" uid="uid://87co054nkbkd" path="res://assets/graphics/ores/uran.png" id="2_erj88"]
+
+[resource]
+script = ExtResource("1_cr1v7")
+texture = ExtResource("2_erj88")
+max_health = 150
+rarity = 1.0
+min_depth = 1000
+costs = 750.0
+metadata/_custom_type_script = "uid://c0yeni13w4l56"

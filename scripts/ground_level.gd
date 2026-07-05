@@ -19,7 +19,7 @@ func _ready() -> void:
 	player.global_position = glob_pos
 
 func _on_home_area_body_entered(_body: Node2D) -> void:
-	get_tree().change_scene_to_packed(HOME_SCENE)
+	get_tree().call_deferred("change_scene_to_packed", HOME_SCENE)
 
 func _on_mine_area_body_entered(_body: Node2D) -> void:
-	get_tree().change_scene_to_packed(MINE_SCENE)
+	get_tree().call_deferred("change_scene_to_packed", MINE_SCENE)

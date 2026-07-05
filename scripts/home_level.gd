@@ -8,7 +8,7 @@ var entered_area: Area2D = null
 
 func _ready() -> void:
 	player_camera.limit_left = -125
-	player_camera.limit_right = 200
+	player_camera.limit_right = 400
 	player_camera.zoom = Vector2(6.0, 6.0)
 	player.global_position = $Markers/SpawnMarker.global_position
 	Globals.home_spawn_marker = true
@@ -17,12 +17,40 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and entered_area != null:
 		_upgrade(entered_area)
 
-func _upgrade(object: Area2D) -> void:
-	print("upgrade")
-	print(object)
+func _upgrade(area: Area2D) -> void:
+	match area.name:
+		"PickaxeArea":
+			if Globals.gold >= Globals.prices[0]:
+				Globals.gold -= Globals.prices[0]
+				Globals.prices[0] *= 3.0
+			elif Globals.gold < Globals.prices[0]:
+				print("Not enough money")
+		"ReinforcementArea":
+			if Globals.gold >= Globals.prices[1]:
+				Globals.gold -= Globals.prices[1]
+				Globals.reinforcements += 1
+				print(Globals.reinforcements)
+			elif Globals.gold < Globals.prices[1]:
+				print("Not enough money")
+		"VisionArea":
+			if Globals.gold >= Globals.prices[2]:
+				Globals.gold -= Globals.prices[2]
+				Globals.prices[2] *= 1.25
+				Globals.zoom -= Vector2(1.5, 1.5)
+				print(Globals.zoom)
+			elif Globals.gold < Globals.prices[2]:
+				print("Not enough money")
+		"SpeedArea":
+			if Globals.gold >= Globals.prices[3]:
+				Globals.gold -= Globals.prices[3]
+				Globals.prices[3] *= 1.5
+				Globals.speed += 10.0
+				print(Globals.speed)
+			elif Globals.gold < Globals.prices[3]:
+				print("Not enough money")
 
 func _on_ground_area_body_entered(_body: Node2D) -> void:
-	get_tree().change_scene_to_file("res://scenes/levels/ground_level.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")
 
 func _on_pickaxe_area_body_entered(_body: Node2D) -> void:
 	entered_area = $Areas/UpgradeAreas/PickaxeArea
@@ -40,4 +68,10 @@ func _on_vision_area_body_entered(_body: Node2D) -> void:
 	entered_area = $Areas/UpgradeAreas/VisionArea
 
 func _on_vision_area_body_exited(_body: Node2D) -> void:
+	entered_area = null
+
+func _on_speed_area_body_entered(_body: Node2D) -> void:
+	entered_area = $Areas/UpgradeAreas/SpeedArea
+
+func _on_speed_area_body_exited(_body: Node2D) -> void:
 	entered_area = null

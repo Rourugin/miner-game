@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dbi05yjhvexq0"]
+
+[ext_resource type="Texture2D" uid="uid://6nmhrjg0qits" path="res://assets/graphics/objects/staircase.png" id="1_f4b65"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5mtf"]
+size = Vector2(27, 32)
+
+[node name="Staircase" type="StaticBody2D" unique_id=1929534161]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=740304690]
+texture = ExtResource("1_f4b65")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=593311454]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_d5mtf")

@@ -70,7 +70,7 @@ animations = [{
 size = Vector2(15, 29)
 
 [node name="Player" type="CharacterBody2D" unique_id=1891528168]
-collision_mask = 3
+collision_mask = 14
 script = ExtResource("1_gmlin")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1484892602]

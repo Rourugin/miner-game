@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="OreData" format=3 uid="uid://c3cf6lsvkm4f"]
+
+[ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_6358g"]
+[ext_resource type="Texture2D" uid="uid://bmlqf45pf1je0" path="res://assets/graphics/ores/galena.png" id="2_dsnne"]
+
+[resource]
+script = ExtResource("1_6358g")
+texture = ExtResource("2_dsnne")
+max_health = 30
+rarity = 30.0
+min_depth = 80
+costs = 5.0
+metadata/_custom_type_script = "uid://c0yeni13w4l56"

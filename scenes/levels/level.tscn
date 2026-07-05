@@ -9,8 +9,8 @@ script = ExtResource("1_bovvr")
 [node name="TileMap" type="TileMap" parent="." unique_id=312307868]
 format = 2
 
-[node name="Player" parent="." unique_id=1891528168 instance=ExtResource("1_377w7")]
-
 [node name="Areas" type="Node2D" parent="." unique_id=1644108631]
 
 [node name="Markers" type="Node2D" parent="." unique_id=1905416797]
+
+[node name="Player" parent="." unique_id=1891528168 instance=ExtResource("1_377w7")]

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cnsi5hiki23i7"]
+
+[ext_resource type="Texture2D" uid="uid://dyluxm1p43way" path="res://assets/graphics/objects/reinforcement.png" id="1_ltky5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggjqa"]
+size = Vector2(26, 30)
+
+[node name="Reinforcement" type="StaticBody2D" unique_id=1678536376]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=562189535]
+texture = ExtResource("1_ltky5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=205959632]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ggjqa")

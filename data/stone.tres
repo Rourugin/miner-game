@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="OreData" format=3 uid="uid://dwosjyjclleob"]
+
+[ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_oye6m"]
+[ext_resource type="Texture2D" uid="uid://3xg0jbyhpk0j" path="res://assets/graphics/ores/stone.png" id="2_0hvbk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k88g3"]
+atlas = ExtResource("2_0hvbk")
+
+[resource]
+script = ExtResource("1_oye6m")
+texture = SubResource("AtlasTexture_k88g3")
+max_health = 5
+rarity = 100.0
+costs = 0.1
+metadata/_custom_type_script = "uid://c0yeni13w4l56"

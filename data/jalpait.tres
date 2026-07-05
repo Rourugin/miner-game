@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="OreData" format=3 uid="uid://cdi5gnv3e0iob"]
+
+[ext_resource type="Script" uid="uid://c0yeni13w4l56" path="res://scripts/ore_data.gd" id="1_8ysp1"]
+[ext_resource type="Texture2D" uid="uid://ddeb3gar2hx1n" path="res://assets/graphics/ores/jalpait.png" id="2_t6g35"]
+
+[resource]
+script = ExtResource("1_8ysp1")
+texture = ExtResource("2_t6g35")
+max_health = 90
+rarity = 6.0
+min_depth = 500
+costs = 50.0
+metadata/_custom_type_script = "uid://c0yeni13w4l56"
