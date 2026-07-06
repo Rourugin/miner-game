@@ -71,4 +71,10 @@ metadata/_edit_lock_ = true
 [node name="PlayerCamera" parent="Player" index="2" unique_id=581254449]
 metadata/_edit_lock_ = true
 
+[node name="Timers" type="Node" parent="." index="6" unique_id=1741301886]
+
+[node name="EarthquakeTimer" type="Timer" parent="Timers" index="0" unique_id=567858512]
+
+[connection signal="timeout" from="Timers/EarthquakeTimer" to="." method="_on_earthquake_timer_timeout"]
+
 [editable path="Player"]

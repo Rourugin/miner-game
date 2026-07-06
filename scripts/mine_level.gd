@@ -6,11 +6,13 @@ const ORE_SCENE: PackedScene = preload("res://scenes/objects/ore.tscn")
 @onready var player_camera: Camera2D = $Player/PlayerCamera
 @onready var ores: Node2D = $Ores
 @onready var tile_map: TileMap = $TileMap
+@onready var earthquake_timer: Timer = $Timers/EarthquakeTimer
 
 
 func _ready() -> void:
 	_generate_ores()
 	_ready_player()
+	_create_timer()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
@@ -65,4 +67,23 @@ func _ready_player() -> void:
 	Globals.home_spawn_marker = false
 
 func _break_ore() -> void:
-	pass
+	var dir: Vector2 = player.last_direction
+	if dir != Vector2.ZERO:
+		match dir:
+			Vector2.RIGHT:
+				pass
+			Vector2.LEFT:
+				pass
+			Vector2.UP:
+				pass
+			Vector2.DOWN:
+				pass
+	elif dir == Vector2.ZERO:
+		pass
+
+func _create_timer() -> void:
+	var duration: float = RandomNumberGenerator.new().randf_range(180.0, 300.0) + Globals.extra_duration
+	earthquake_timer.start(duration)
+
+func _on_earthquake_timer_timeout() -> void:
+	print("you lost")

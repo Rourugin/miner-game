@@ -8,7 +8,7 @@ var entered_area: Area2D = null
 
 func _ready() -> void:
 	player_camera.limit_left = -125
-	player_camera.limit_right = 400
+	player_camera.limit_right = 464
 	player_camera.zoom = Vector2(6.0, 6.0)
 	player.global_position = $Markers/SpawnMarker.global_position
 	Globals.home_spawn_marker = true
@@ -49,6 +49,14 @@ func _upgrade(area: Area2D) -> void:
 				print(Globals.speed)
 			elif Globals.gold < Globals.prices[3]:
 				print("Not enough money")
+		"EnteredArea":
+			if Globals.gold >= Globals.prices[4]:
+				Globals.gold -= Globals.prices[4]
+				Globals.prices[4] *= 2.0
+				Globals.extra_duration += 10.0
+				print(Globals.extra_duration)
+			elif Globals.gold < Globals.prices[4]:
+				print("Not enough money")
 
 func _on_ground_area_body_entered(_body: Node2D) -> void:
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")
@@ -76,3 +84,12 @@ func _on_speed_area_body_entered(_body: Node2D) -> void:
 
 func _on_speed_area_body_exited(_body: Node2D) -> void:
 	entered_area = null
+
+func _on_duration_area_body_entered(_body: Node2D) -> void:
+	entered_area = $Areas/UpgradeAreas/DurationArea
+
+func _on_duration_area_body_exited(_body: Node2D) -> void:
+	entered_area = null
+
+func _on_quota_area_body_entered(_body: Node2D) -> void:
+	print("quota")
