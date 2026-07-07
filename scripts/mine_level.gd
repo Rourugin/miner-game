@@ -69,17 +69,48 @@ func _ready_player() -> void:
 func _break_ore() -> void:
 	var dir: Vector2 = player.last_direction
 	if dir != Vector2.ZERO:
+		var ores_arr: Array[Node] = ores.get_children()
 		match dir:
 			Vector2.RIGHT:
-				pass
+				for i in range(ores_arr.size()):
+					if (player.global_position.x <= ores_arr[i].global_position.x)\
+					and (player.global_position.x + 32 >= ores_arr[i].global_position.x)\
+					and (player.global_position.y <= ores_arr[i].global_position.y)\
+					and (player.global_position.y + 32 >= ores_arr[i].global_position.y):
+						_breaking(ores_arr[i])
+						break
 			Vector2.LEFT:
-				pass
+				for i in range(ores_arr.size()):
+					if (player.global_position.x >= ores_arr[i].global_position.x)\
+					and (player.global_position.x - 32 <= ores_arr[i].global_position.x)\
+					and (player.global_position.y <= ores_arr[i].global_position.y)\
+					and (player.global_position.y + 32 >= ores_arr[i].global_position.y):
+						_breaking(ores_arr[i])
+						break
 			Vector2.UP:
-				pass
+				for i in range(ores_arr.size()):
+					if (player.global_position.x - 31 <= ores_arr[i].global_position.x)\
+					and (player.global_position.x + 31 >= ores_arr[i].global_position.x)\
+					and (player.global_position.y >= ores_arr[i].global_position.y)\
+					and (player.global_position.y + 32 <= ores_arr[i].global_position.y):
+						_breaking(ores_arr[i])
+						break
 			Vector2.DOWN:
-				pass
+				for i in range(ores_arr.size()):
+					if (player.global_position.x - 31 <= ores_arr[i].global_position.x)\
+					and (player.global_position.x + 31 >= ores_arr[i].global_position.x)\
+					and (player.global_position.y <= ores_arr[i].global_position.y)\
+					and (player.global_position.y - 32 >= ores_arr[i].global_position.y):
+						_breaking(ores_arr[i])
+						break
 	elif dir == Vector2.ZERO:
 		pass
+
+func _breaking(ore: StaticBody2D) -> void:
+	ore.health -= Globals.pickaxe_damage
+	if ore.health <= 0:
+		Globals.gold += ore.data.costs
+		ore.queue_free()
 
 func _create_timer() -> void:
 	var duration: float = RandomNumberGenerator.new().randf_range(180.0, 300.0) + Globals.extra_duration

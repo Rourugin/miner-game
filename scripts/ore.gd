@@ -1,9 +1,8 @@
 extends StaticBody2D
 
-var health: int
-
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
+@export var health: int
 @export var data: OreData
 
 

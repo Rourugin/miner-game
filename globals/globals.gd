@@ -30,6 +30,4 @@ func _get_resources() -> Array[OreData]:
 	for resource in res:
 		for i in range(resource.rarity):
 			resources_arr.append(resource)
-			print("he")
-	print(resources_arr)
 	return resources_arr

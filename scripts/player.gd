@@ -21,8 +21,12 @@ func _process_movement(direction: Vector2) -> void:
 			velocity = direction * Globals.speed
 			last_direction = direction
 			play_animation("run")
-		Vector2.UP, Vector2.DOWN:
-			if get_tree().current_scene.name == "MineLevel" and global_position.y > -7:
+		Vector2.DOWN:
+			if get_tree().current_scene.name == "MineLevel":
+				velocity = direction * Globals.speed
+				last_direction = direction
+		Vector2.UP:
+			if get_tree().current_scene.name == "MineLevel" and global_position.y > -208:
 				velocity = direction * Globals.speed
 				last_direction = direction
 		
