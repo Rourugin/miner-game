@@ -18,9 +18,6 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		_break_ore()
 
-func _on_area_2d_body_entered(_body: Node2D) -> void:
-	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")
-
 func _generate_ores() -> void:
 	for ore in ores.get_children():
 		ore.queue_free()
@@ -91,16 +88,17 @@ func _break_ore() -> void:
 				for i in range(ores_arr.size()):
 					if (player.global_position.x - 31 <= ores_arr[i].global_position.x)\
 					and (player.global_position.x + 31 >= ores_arr[i].global_position.x)\
-					and (player.global_position.y >= ores_arr[i].global_position.y)\
-					and (player.global_position.y + 32 <= ores_arr[i].global_position.y):
+					and (player.global_position.y <= ores_arr[i].global_position.y)\
+					and (player.global_position.y - 32 >= ores_arr[i].global_position.y):
 						_breaking(ores_arr[i])
 						break
 			Vector2.DOWN:
 				for i in range(ores_arr.size()):
-					if (player.global_position.x - 31 <= ores_arr[i].global_position.x)\
-					and (player.global_position.x + 31 >= ores_arr[i].global_position.x)\
+					if (player.global_position.x <= ores_arr[i].global_position.x)\
+					and (player.global_position.x + 32 >= ores_arr[i].global_position.x)\
 					and (player.global_position.y <= ores_arr[i].global_position.y)\
-					and (player.global_position.y - 32 >= ores_arr[i].global_position.y):
+					and (player.global_position.y + 32 >= ores_arr[i].global_position.y):
+						print("he")
 						_breaking(ores_arr[i])
 						break
 	elif dir == Vector2.ZERO:
@@ -118,3 +116,7 @@ func _create_timer() -> void:
 
 func _on_earthquake_timer_timeout() -> void:
 	print("you lost")
+
+
+func _on_elevator_body_entered(_body: Node2D) -> void:
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")

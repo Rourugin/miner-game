@@ -75,6 +75,7 @@ metadata/_edit_lock_ = true
 
 [node name="EarthquakeTimer" type="Timer" parent="Timers" index="0" unique_id=567858512]
 
+[connection signal="body_entered" from="Objects/Elevator" to="." method="_on_elevator_body_entered"]
 [connection signal="timeout" from="Timers/EarthquakeTimer" to="." method="_on_earthquake_timer_timeout"]
 
 [editable path="Player"]
