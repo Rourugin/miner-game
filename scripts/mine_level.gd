@@ -1,6 +1,7 @@
 extends Node2D
 
 const ORE_SCENE: PackedScene = preload("res://scenes/objects/ore.tscn")
+const EPSILON: float = 1.0
 
 @onready var player: CharacterBody2D = $Player
 @onready var player_camera: Camera2D = $Player/PlayerCamera
@@ -86,25 +87,23 @@ func _break_ore() -> void:
 						break
 			Vector2.UP:
 				for i in range(ores_arr.size()):
-					if (player.global_position.x - 31 <= ores_arr[i].global_position.x)\
-					and (player.global_position.x + 31 >= ores_arr[i].global_position.x)\
-					and (player.global_position.y <= ores_arr[i].global_position.y)\
-					and (player.global_position.y - 32 >= ores_arr[i].global_position.y):
+					if (abs(player.global_position.x - ores_arr[i].global_position.x) <= 32 + EPSILON)\
+					and (ores_arr[i].global_position.y >= player.global_position.y - 32 - EPSILON)\
+					and (ores_arr[i].global_position.y <= player.global_position.y + EPSILON):
 						_breaking(ores_arr[i])
 						break
 			Vector2.DOWN:
 				for i in range(ores_arr.size()):
-					if (player.global_position.x <= ores_arr[i].global_position.x)\
-					and (player.global_position.x + 32 >= ores_arr[i].global_position.x)\
-					and (player.global_position.y <= ores_arr[i].global_position.y)\
-					and (player.global_position.y + 32 >= ores_arr[i].global_position.y):
-						print("he")
+					if (abs(player.global_position.x - ores_arr[i].global_position.x) <= 32 + EPSILON)\
+					and (ores_arr[i].global_position.y >= player.global_position.y - EPSILON)\
+					and (ores_arr[i].global_position.y <= player.global_position.y + 32 + EPSILON):
 						_breaking(ores_arr[i])
 						break
 	elif dir == Vector2.ZERO:
 		pass
 
 func _breaking(ore: StaticBody2D) -> void:
+	player.play_animation("hit")
 	ore.health -= Globals.pickaxe_damage
 	if ore.health <= 0:
 		Globals.gold += ore.data.costs
