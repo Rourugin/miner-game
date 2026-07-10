@@ -2,8 +2,11 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var hit_timer: Timer = $HitTimer
 
 @export var last_direction: Vector2
+
+var is_playing_animation: bool = false
 
 
 func _physics_process(_delta: float) -> void:
@@ -33,7 +36,8 @@ func _process_movement(direction: Vector2) -> void:
 func play_animation(anim: String) -> void:
 	match anim:
 		"idle":
-			animated_sprite_2d.play("idle")
+			if not is_playing_animation:
+				animated_sprite_2d.play("idle")
 		"run":
 			animated_sprite_2d.play("run")
 			if last_direction == Vector2.RIGHT:
@@ -43,13 +47,19 @@ func play_animation(anim: String) -> void:
 				animated_sprite_2d.flip_h = true
 				collision_shape_2d.position.x = abs(collision_shape_2d.position.x) * -1
 		"hit":
+			is_playing_animation = true
 			match last_direction:
 				Vector2.RIGHT:
+					animated_sprite_2d.flip_h = false
+					collision_shape_2d.position.x = abs(collision_shape_2d.position.x)
 					animated_sprite_2d.play("hit_side")
+					collision_shape_2d.position.x = abs(collision_shape_2d.position.x) * -1
 				Vector2.LEFT:
+					animated_sprite_2d.flip_h = true
 					animated_sprite_2d.play("hit_side")
 				Vector2.UP:
 					animated_sprite_2d.play("hit_up")
 				Vector2.DOWN:
 					animated_sprite_2d.play("hit_down")
-	
+			await animated_sprite_2d.animation_finished
+			is_playing_animation = false

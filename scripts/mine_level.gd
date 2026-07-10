@@ -5,6 +5,7 @@ const EPSILON: float = 1.0
 
 @onready var player: CharacterBody2D = $Player
 @onready var player_camera: Camera2D = $Player/PlayerCamera
+@onready var hit_timer: Timer = $Player/HitTimer
 @onready var ores: Node2D = $Ores
 @onready var tile_map: TileMap = $TileMap
 @onready var earthquake_timer: Timer = $Timers/EarthquakeTimer
@@ -103,7 +104,7 @@ func _break_ore() -> void:
 		pass
 
 func _breaking(ore: StaticBody2D) -> void:
-	player.play_animation("hit")
+	hit_timer.start(0.3)
 	ore.health -= Globals.pickaxe_damage
 	if ore.health <= 0:
 		Globals.gold += ore.data.costs
