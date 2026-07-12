@@ -6,13 +6,13 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8uki6"]
 shader = ExtResource("2_f6eus")
-shader_parameter/amount = 3.0000001425
+shader_parameter/amount = 5.0
 
 [node name="PauseMenu" type="Control" unique_id=491514823]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.57900006
+anchor_bottom = 0.625
+offset_right = -0.5800781
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0lmf7")
@@ -23,20 +23,25 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1530.0
+offset_top = -509.0
+offset_right = 1317.9
+offset_bottom = 896.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=731068172]
-texture_filter = 1
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=879944296]
 layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-theme_override_constants/margin_top = 40
+offset_right = 1111.1
+offset_bottom = 675.0
+theme_override_constants/margin_bottom = 25
 
 [node name="Label" type="Label" parent="MarginContainer" unique_id=309383203]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_6tw0m")
 theme_override_font_sizes/font_size = 224
 text = "Пауза"
@@ -44,17 +49,21 @@ text = "Пауза"
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2007603703]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 theme_override_constants/separation = 20
 
 [node name="ContinueBtn" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1491259189]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_6tw0m")
 theme_override_font_sizes/font_size = 160
 text = " Возобновить"
 
 [node name="QuitBtn" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1839882359]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_6tw0m")
 theme_override_font_sizes/font_size = 160
 text = "Выйти"

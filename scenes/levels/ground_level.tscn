@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bhuatndquujk4" path="res://scenes/levels/level.tscn" id="1_1cn3u"]
 [ext_resource type="Script" uid="uid://78q1drd0noxs" path="res://scripts/ground_level.gd" id="2_4tsyt"]
 [ext_resource type="Texture2D" uid="uid://dxk40e4c064o5" path="res://assets/graphics/tilemaps/ground.png" id="2_rgmyb"]
-[ext_resource type="PackedScene" uid="uid://b18kfuo0e8xlh" path="res://scenes/ui/pause_menu.tscn" id="4_wp4qn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4tsyt"]
 texture = ExtResource("2_rgmyb")
@@ -125,9 +124,6 @@ position = Vector2(-192, 0)
 
 [node name="PlayerCamera" parent="Player" parent_id_path=PackedInt32Array(1891528168) index="2" unique_id=581254449]
 limit_right = 425
-
-[node name="PauseMenu" parent="." index="4" unique_id=491514823 instance=ExtResource("4_wp4qn")]
-visible = false
 
 [connection signal="body_entered" from="Areas/HomeArea" to="." method="_on_home_area_body_entered"]
 [connection signal="body_entered" from="Areas/MineArea" to="." method="_on_mine_area_body_entered"]

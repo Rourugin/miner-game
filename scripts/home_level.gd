@@ -2,20 +2,22 @@ extends Node2D
 
 @onready var player_camera: Camera2D = $Player/PlayerCamera
 @onready var player: CharacterBody2D = $Player
+@onready var pause_menu: Control = $Player/PlayerCamera/PauseMenu
 
 var entered_area: Area2D = null
+var paused: bool = false
 
 
 func _ready() -> void:
-	player_camera.limit_left = -125
-	player_camera.limit_right = 464
-	player_camera.zoom = Vector2(6.0, 6.0)
+	_prepare()
 	player.global_position = $Markers/SpawnMarker.global_position
 	Globals.home_spawn_marker = true
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and entered_area != null:
 		_upgrade(entered_area)
+	if Input.is_action_just_pressed("pause"):
+		pause_game()
 
 func _upgrade(area: Area2D) -> void:
 	match area.name:
@@ -57,6 +59,23 @@ func _upgrade(area: Area2D) -> void:
 				print(Globals.extra_duration)
 			elif Globals.gold < Globals.prices[4]:
 				print("Not enough money")
+
+func _prepare() -> void:
+	player_camera.limit_left = -125
+	player_camera.limit_right = 464
+	player_camera.zoom = Vector2(6.0, 6.0)
+	pause_menu.scale = Vector2(0.27, 0.27)
+	pause_menu.position = Vector2(-100, -100)
+
+func pause_game() -> void:
+	if paused:
+		pause_menu.hide()
+		Engine.time_scale = 1
+	elif !paused:
+		pause_menu.show()
+		Engine.time_scale = 0
+	
+	paused = !paused
 
 func _on_ground_area_body_entered(_body: Node2D) -> void:
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")

@@ -12,7 +12,7 @@ const EPSILON: float = 1.0
 
 func _ready() -> void:
 	_generate_ores()
-	_ready_player()
+	_prepare()
 	_create_timer()
 
 func _process(_delta: float) -> void:
@@ -57,7 +57,7 @@ func _is_blocked_cell(cell: Vector2i) -> bool:
 	
 	return false
 
-func _ready_player() -> void:
+func _prepare() -> void:
 	player_camera.limit_left = -10000
 	player_camera.limit_right = 10000
 	player_camera.zoom = Globals.zoom
@@ -115,7 +115,6 @@ func _create_timer() -> void:
 
 func _on_earthquake_timer_timeout() -> void:
 	print("you lost")
-
 
 func _on_elevator_body_entered(_body: Node2D) -> void:
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")
