@@ -16,6 +16,8 @@ format = 2
 
 [node name="Player" parent="." unique_id=1891528168 instance=ExtResource("1_377w7")]
 
+[node name="AudioPlayers" type="Node2D" parent="." unique_id=1295250127]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1550794939]
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=491514823 instance=ExtResource("3_b2cq8")]

@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://c545ogfk4i07g" path="res://scripts/mine_level.gd" id="2_d2pyv"]
 [ext_resource type="Texture2D" uid="uid://rfe5vk4ahu5f" path="res://assets/graphics/tilemaps/mine.png" id="2_vyudp"]
 [ext_resource type="PackedScene" uid="uid://bj5p6y5f3fpkb" path="res://scenes/objects/elevator.tscn" id="4_2mta8"]
+[ext_resource type="AudioStream" uid="uid://di8y528qxbme7" path="res://assets/audio/hitting.mp3" id="5_kpupw"]
+[ext_resource type="AudioStream" uid="uid://cyl6uigjmapob" path="res://assets/audio/building.wav" id="6_ess0c"]
+[ext_resource type="AudioStream" uid="uid://b57lkg5c4ojjg" path="res://assets/audio/elevator.wav" id="7_ess0c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2pyv"]
 texture = ExtResource("2_vyudp")
@@ -64,7 +67,16 @@ metadata/_edit_lock_ = true
 [node name="PlayerCamera" parent="Player" index="2" unique_id=581254449]
 metadata/_edit_lock_ = true
 
-[node name="Timers" type="Node" parent="." index="6" unique_id=1741301886]
+[node name="HitPlayer" type="AudioStreamPlayer2D" parent="AudioPlayers" parent_id_path=PackedInt32Array(1295250127) index="0" unique_id=947066310]
+stream = ExtResource("5_kpupw")
+
+[node name="BuildingPlayer" type="AudioStreamPlayer2D" parent="AudioPlayers" parent_id_path=PackedInt32Array(1295250127) index="1" unique_id=182326898]
+stream = ExtResource("6_ess0c")
+
+[node name="ElevatorPlayer" type="AudioStreamPlayer2D" parent="AudioPlayers" parent_id_path=PackedInt32Array(1295250127) index="2" unique_id=957133379]
+stream = ExtResource("7_ess0c")
+
+[node name="Timers" type="Node" parent="." index="7" unique_id=1741301886]
 
 [node name="EarthquakeTimer" type="Timer" parent="Timers" index="0" unique_id=567858512]
 

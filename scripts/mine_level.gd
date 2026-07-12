@@ -11,6 +11,9 @@ const CELL_SIZE: int = 32
 @onready var reinforcements: Node2D = $Objects/Reinforcements
 @onready var tile_map: TileMap = $TileMap
 @onready var earthquake_timer: Timer = $Timers/EarthquakeTimer
+@onready var hit_player: AudioStreamPlayer2D = $AudioPlayers/HitPlayer
+@onready var building_player: AudioStreamPlayer2D = $AudioPlayers/BuildingPlayer
+@onready var elevator_player: AudioStreamPlayer2D = $AudioPlayers/ElevatorPlayer
 
 
 func _ready() -> void:
@@ -69,7 +72,6 @@ func _build_all_reinforcements() -> void:
 		reinforcement.global_position = glob_coords
 		reinforcements.add_child(reinforcement)
 		
-
 func _is_blocked_cell(cell: Vector2i) -> bool:
 	for i in range(Globals.blocked_cells_coordinate.size()):
 		if cell == Globals.blocked_cells_coordinate[i]:
@@ -126,9 +128,11 @@ func _break_ore() -> void:
 
 func _breaking(ore: StaticBody2D) -> void:
 	player.play_animation("hit")
+	hit_player.play()
 	ore.health -= Globals.pickaxe_damage
 	if ore.health <= 0:
 		Globals.gold += ore.data.costs
+		Globals.score += ore.data.costs * 10
 		ore.queue_free()
 
 func _build_reinforcement() -> void:
@@ -140,6 +144,7 @@ func _build_reinforcement() -> void:
 		reinforcement.global_position = cell_center
 		reinforcements.add_child(reinforcement)
 		_add_blocked_cell(reinforcement)
+		building_player.play()
 		Globals.reinforcements -= 1
 		
 func _add_blocked_cell(object: StaticBody2D) -> void:
@@ -152,6 +157,9 @@ func _create_timer() -> void:
 
 func _on_earthquake_timer_timeout() -> void:
 	print("you lost")
+	print(Globals.score)
 
 func _on_elevator_body_entered(_body: Node2D) -> void:
+	elevator_player.play()
+	await elevator_player.finished
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")

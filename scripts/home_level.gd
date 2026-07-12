@@ -2,6 +2,7 @@ extends Level
 
 @onready var player_camera: Camera2D = $Player/PlayerCamera
 @onready var player: CharacterBody2D = $Player
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioPlayers/AudioStreamPlayer2D
 
 var entered_area: Area2D = null
 
@@ -22,6 +23,7 @@ func _upgrade(area: Area2D) -> void:
 				Globals.gold -= Globals.prices[0]
 				Globals.pickaxe_damage += 1
 				Globals.prices[0] *= 3.0
+				Globals.score += 20
 			elif Globals.gold < Globals.prices[0]:
 				print("Not enough money")
 		"ReinforcementArea":
@@ -36,6 +38,7 @@ func _upgrade(area: Area2D) -> void:
 				Globals.gold -= Globals.prices[2]
 				Globals.prices[2] *= 1.25
 				Globals.zoom -= Vector2(1.5, 1.5)
+				Globals.score += 12
 				print(Globals.zoom)
 			elif Globals.gold < Globals.prices[2]:
 				print("Not enough money")
@@ -44,14 +47,16 @@ func _upgrade(area: Area2D) -> void:
 				Globals.gold -= Globals.prices[3]
 				Globals.prices[3] *= 1.5
 				Globals.speed += 10.0
+				Globals.score += 10
 				print(Globals.speed)
 			elif Globals.gold < Globals.prices[3]:
 				print("Not enough money")
-		"EnteredArea":
+		"DurationArea":
 			if Globals.gold >= Globals.prices[4]:
 				Globals.gold -= Globals.prices[4]
 				Globals.prices[4] *= 2.0
 				Globals.extra_duration += 10.0
+				Globals.score += 15
 				print(Globals.extra_duration)
 			elif Globals.gold < Globals.prices[4]:
 				print("Not enough money")
@@ -62,6 +67,8 @@ func _prepare() -> void:
 	player_camera.zoom = Vector2(6.0, 6.0)
 
 func _on_ground_area_body_entered(_body: Node2D) -> void:
+	audio_stream_player_2d.play()
+	await audio_stream_player_2d.finished
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")
 
 func _on_pickaxe_area_body_entered(_body: Node2D) -> void:
