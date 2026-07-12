@@ -1,16 +1,20 @@
 extends Level
 
 const ORE_SCENE: PackedScene = preload("res://scenes/objects/ore.tscn")
+const REINFROCEMENT_SCENE: PackedScene = preload("res://scenes/objects/reinforcement.tscn")
 const EPSILON: float = 1.0
+const CELL_SIZE: int = 32
 
 @onready var player: CharacterBody2D = $Player
 @onready var player_camera: Camera2D = $Player/PlayerCamera
 @onready var ores: Node2D = $Ores
+@onready var reinforcements: Node2D = $Objects/Reinforcements
 @onready var tile_map: TileMap = $TileMap
 @onready var earthquake_timer: Timer = $Timers/EarthquakeTimer
 
 
 func _ready() -> void:
+	_build_all_reinforcements()
 	_generate_ores()
 	_prepare()
 	_create_timer()
@@ -18,6 +22,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		_break_ore()
+	if Input.is_action_just_pressed("build"):
+		_build_reinforcement()
 	if Input.is_action_just_pressed("pause"):
 		pause_game()
 
@@ -52,6 +58,18 @@ func _generate_ores() -> void:
 		ore.global_position = local_position
 		ores.add_child(ore)
 
+func _build_all_reinforcements() -> void:
+	for i in range(Globals.blocked_cells_coordinate.size()):
+		if Globals.blocked_cells_coordinate[i] == Vector2i(-15, -7):
+			continue
+		var reinforcement = REINFROCEMENT_SCENE.instantiate()
+		var x_coords = (Globals.blocked_cells_coordinate[i].x + 0.5) * CELL_SIZE
+		var y_coords = (Globals.blocked_cells_coordinate[i].y + 0.5) * CELL_SIZE
+		var glob_coords = Vector2(x_coords, y_coords)
+		reinforcement.global_position = glob_coords
+		reinforcements.add_child(reinforcement)
+		
+
 func _is_blocked_cell(cell: Vector2i) -> bool:
 	for i in range(Globals.blocked_cells_coordinate.size()):
 		if cell == Globals.blocked_cells_coordinate[i]:
@@ -74,31 +92,33 @@ func _break_ore() -> void:
 			Vector2.RIGHT:
 				for i in range(ores_arr.size()):
 					if (player.global_position.x <= ores_arr[i].global_position.x)\
-					and (player.global_position.x + 32 >= ores_arr[i].global_position.x)\
+					and (player.global_position.x + CELL_SIZE >= ores_arr[i].global_position.x)\
 					and (player.global_position.y <= ores_arr[i].global_position.y)\
-					and (player.global_position.y + 32 >= ores_arr[i].global_position.y):
+					and (player.global_position.y + CELL_SIZE >= ores_arr[i].global_position.y):
 						_breaking(ores_arr[i])
 						break
 			Vector2.LEFT:
 				for i in range(ores_arr.size()):
 					if (player.global_position.x >= ores_arr[i].global_position.x)\
-					and (player.global_position.x - 32 <= ores_arr[i].global_position.x)\
+					and (player.global_position.x - CELL_SIZE <= ores_arr[i].global_position.x)\
 					and (player.global_position.y <= ores_arr[i].global_position.y)\
-					and (player.global_position.y + 32 >= ores_arr[i].global_position.y):
+					and (player.global_position.y + CELL_SIZE >= ores_arr[i].global_position.y):
 						_breaking(ores_arr[i])
 						break
 			Vector2.UP:
 				for i in range(ores_arr.size()):
-					if (abs(player.global_position.x - ores_arr[i].global_position.x) <= 16 + EPSILON)\
-					and (ores_arr[i].global_position.y >= player.global_position.y - 32 - EPSILON)\
+					@warning_ignore("integer_division")
+					if (abs(player.global_position.x - ores_arr[i].global_position.x) <= (CELL_SIZE / 2) + EPSILON)\
+					and (ores_arr[i].global_position.y >= player.global_position.y - CELL_SIZE - EPSILON)\
 					and (ores_arr[i].global_position.y <= player.global_position.y + EPSILON):
 						_breaking(ores_arr[i])
 						break
 			Vector2.DOWN:
 				for i in range(ores_arr.size()):
-					if (abs(player.global_position.x - ores_arr[i].global_position.x) <= 16 + EPSILON)\
+					@warning_ignore("integer_division")
+					if (abs(player.global_position.x - ores_arr[i].global_position.x) <= (CELL_SIZE / 2) + EPSILON)\
 					and (ores_arr[i].global_position.y >= player.global_position.y - EPSILON)\
-					and (ores_arr[i].global_position.y <= player.global_position.y + 32 + EPSILON):
+					and (ores_arr[i].global_position.y <= player.global_position.y + CELL_SIZE + EPSILON):
 						_breaking(ores_arr[i])
 						break
 	elif dir == Vector2.ZERO:
@@ -111,6 +131,21 @@ func _breaking(ore: StaticBody2D) -> void:
 		Globals.gold += ore.data.costs
 		ore.queue_free()
 
+func _build_reinforcement() -> void:
+	if Globals.reinforcements >= 0:
+		var cell_x = floor(player.global_position.x / CELL_SIZE)
+		var cell_y = floor(player.global_position.y / CELL_SIZE)
+		var cell_center: Vector2 = Vector2(cell_x * CELL_SIZE + CELL_SIZE / 2.0, cell_y * CELL_SIZE + CELL_SIZE / 2.0)
+		var reinforcement = REINFROCEMENT_SCENE.instantiate()
+		reinforcement.global_position = cell_center
+		reinforcements.add_child(reinforcement)
+		_add_blocked_cell(reinforcement)
+		Globals.reinforcements -= 1
+		
+func _add_blocked_cell(object: StaticBody2D) -> void:
+	var cell_coords: Vector2i = Vector2i(roundi(object.global_position.x / CELL_SIZE), roundi(object.global_position.y / CELL_SIZE))
+	Globals.blocked_cells_coordinate.append(cell_coords)
+		
 func _create_timer() -> void:
 	var duration: float = RandomNumberGenerator.new().randf_range(180.0, 300.0) + Globals.extra_duration
 	earthquake_timer.start(duration)
