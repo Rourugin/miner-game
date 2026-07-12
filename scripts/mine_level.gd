@@ -1,4 +1,4 @@
-extends Node2D
+extends Level
 
 const ORE_SCENE: PackedScene = preload("res://scenes/objects/ore.tscn")
 const EPSILON: float = 1.0
@@ -18,6 +18,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		_break_ore()
+	if Input.is_action_just_pressed("pause"):
+		pause_game()
 
 func _generate_ores() -> void:
 	for ore in ores.get_children():
@@ -87,14 +89,14 @@ func _break_ore() -> void:
 						break
 			Vector2.UP:
 				for i in range(ores_arr.size()):
-					if (abs(player.global_position.x - ores_arr[i].global_position.x) <= 32 + EPSILON)\
+					if (abs(player.global_position.x - ores_arr[i].global_position.x) <= 16 + EPSILON)\
 					and (ores_arr[i].global_position.y >= player.global_position.y - 32 - EPSILON)\
 					and (ores_arr[i].global_position.y <= player.global_position.y + EPSILON):
 						_breaking(ores_arr[i])
 						break
 			Vector2.DOWN:
 				for i in range(ores_arr.size()):
-					if (abs(player.global_position.x - ores_arr[i].global_position.x) <= 32 + EPSILON)\
+					if (abs(player.global_position.x - ores_arr[i].global_position.x) <= 16 + EPSILON)\
 					and (ores_arr[i].global_position.y >= player.global_position.y - EPSILON)\
 					and (ores_arr[i].global_position.y <= player.global_position.y + 32 + EPSILON):
 						_breaking(ores_arr[i])

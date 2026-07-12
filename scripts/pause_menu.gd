@@ -1,7 +1,7 @@
 extends Control
 
-@onready var level: Node2D = $"../../.."
-@onready var player: CharacterBody2D = $"../.."
+@onready var level: Node2D = $"../.."
+@onready var player: CharacterBody2D = $"../../Player"
 
 func _process(_delta: float) -> void:
 	if (Input.get_vector("left", "right", "up", "down") or Input.is_action_just_pressed("interact"))\
