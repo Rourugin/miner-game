@@ -2,12 +2,14 @@ extends Level
 
 const ORE_SCENE: PackedScene = preload("res://scenes/objects/ore.tscn")
 const REINFROCEMENT_SCENE: PackedScene = preload("res://scenes/objects/reinforcement.tscn")
+const STAIRCASE_SCENE: PackedScene = preload("res://scenes/objects/staircase.tscn")
 const EPSILON: float = 1.0
 const CELL_SIZE: int = 32
 
 @onready var player: CharacterBody2D = $Player
 @onready var player_camera: Camera2D = $Player/PlayerCamera
 @onready var ores: Node2D = $Ores
+@onready var staircases: Node2D = $Objects/Staircases
 @onready var reinforcements: Node2D = $Objects/Reinforcements
 @onready var tile_map: TileMap = $TileMap
 @onready var earthquake_timer: Timer = $Timers/EarthquakeTimer
@@ -131,26 +133,50 @@ func _breaking(ore: StaticBody2D) -> void:
 	hit_player.play()
 	ore.health -= Globals.pickaxe_damage
 	if ore.health <= 0:
+		_spawn_staircase(player.last_direction)
 		Globals.gold += ore.data.costs
 		Globals.score += ore.data.costs * 10
 		ore.queue_free()
 
+func _get_cell_center() -> Vector2:
+	var cell_x = floor(player.global_position.x / CELL_SIZE)
+	var cell_y = floor(player.global_position.y / CELL_SIZE)
+	return Vector2(cell_x * CELL_SIZE + CELL_SIZE / 2.0, cell_y * CELL_SIZE + CELL_SIZE / 2.0)
+
 func _build_reinforcement() -> void:
 	if Globals.reinforcements >= 0:
-		var cell_x = floor(player.global_position.x / CELL_SIZE)
-		var cell_y = floor(player.global_position.y / CELL_SIZE)
-		var cell_center: Vector2 = Vector2(cell_x * CELL_SIZE + CELL_SIZE / 2.0, cell_y * CELL_SIZE + CELL_SIZE / 2.0)
+		var cell_center: Vector2 = _get_cell_center()
 		var reinforcement = REINFROCEMENT_SCENE.instantiate()
 		reinforcement.global_position = cell_center
 		reinforcements.add_child(reinforcement)
 		_add_blocked_cell(reinforcement)
 		building_player.play()
 		Globals.reinforcements -= 1
-		
+
 func _add_blocked_cell(object: StaticBody2D) -> void:
 	var cell_coords: Vector2i = Vector2i(roundi(object.global_position.x / CELL_SIZE), roundi(object.global_position.y / CELL_SIZE))
 	Globals.blocked_cells_coordinate.append(cell_coords)
-		
+
+func _spawn_staircase(dir: Vector2) -> void:
+	if dir != Vector2.UP and dir != Vector2.DOWN:
+		return
+	var player_cell_center = _get_cell_center()
+	var player_staircase = STAIRCASE_SCENE.instantiate()
+	player_staircase.global_position = player_cell_center
+	staircases.add_child(player_staircase)
+	
+	var next_staircase = STAIRCASE_SCENE.instantiate()
+	var next_cell_center = player_cell_center
+	match dir:
+		Vector2.UP:
+			next_cell_center.y -= CELL_SIZE
+		Vector2.DOWN:
+			next_cell_center.y += CELL_SIZE
+		_:
+			print("Can't spawn another staircase")
+	next_staircase.global_position = next_cell_center
+	staircases.add_child(next_staircase)
+	
 func _create_timer() -> void:
 	var duration: float = RandomNumberGenerator.new().randf_range(180.0, 300.0) + Globals.extra_duration
 	earthquake_timer.start(duration)

@@ -31,5 +31,5 @@ func _prepare() -> void:
 
 func _on_mine_area_body_entered(_body: Node2D) -> void:
 	elevator_player.play()
-	await elevator_player.finished
+	#await elevator_player.finished
 	get_tree().call_deferred("change_scene_to_packed", MINE_SCENE)

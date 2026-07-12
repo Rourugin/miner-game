@@ -35,9 +35,6 @@ export/convert_text_resources_to_binary=false
 mp3={
 &"loop": true
 }
-wav={
-&"edit/loop_mode": 2
-}
 
 [input]
 
