@@ -6,7 +6,6 @@ extends Level
 
 var entered_area: Area2D = null
 
-
 func _ready() -> void:
 	_prepare()
 	player.global_position = $Markers/SpawnMarker.global_position
@@ -14,9 +13,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and entered_area != null:
-		_upgrade(entered_area)
+		_interact(entered_area)
 
-func _upgrade(area: Area2D) -> void:
+func _interact(area: Area2D) -> void:
 	match area.name:
 		"PickaxeArea":
 			if Globals.gold >= Globals.prices[0]:
@@ -60,6 +59,14 @@ func _upgrade(area: Area2D) -> void:
 				print(Globals.extra_duration)
 			elif Globals.gold < Globals.prices[4]:
 				print("Not enough money")
+		"QuotaArea":
+			if Globals.gold >= Globals.quota:
+				Globals.gold -= Globals.quota
+				Globals.quota *= 1.36
+				Globals.score += 17
+				Globals.start_quota_timer()
+			elif Globals.gold < Globals.quota:
+				print("Not enough money")
 
 func _prepare() -> void:
 	player_camera.limit_left = -125
@@ -68,7 +75,6 @@ func _prepare() -> void:
 
 func _on_ground_area_body_entered(_body: Node2D) -> void:
 	audio_stream_player_2d.play()
-	await audio_stream_player_2d.finished
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")
 
 func _on_pickaxe_area_body_entered(_body: Node2D) -> void:
@@ -102,4 +108,7 @@ func _on_duration_area_body_exited(_body: Node2D) -> void:
 	entered_area = null
 
 func _on_quota_area_body_entered(_body: Node2D) -> void:
-	print("quota")
+	entered_area = $Areas/QuotaArea
+
+func _on_quota_area_body_exited(_body: Node2D) -> void:
+	entered_area = null

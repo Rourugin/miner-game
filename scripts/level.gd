@@ -1,7 +1,7 @@
 extends Node2D
 class_name Level
 
-@onready var pause_menu: Control = $CanvasLayer/PauseMenu
+@onready var pause_menu: Control = $PauseLayer/PauseMenu
 
 var paused: bool = false
 

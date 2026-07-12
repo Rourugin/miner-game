@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Globals="*uid://d1xpcbjscich3"
 Music="*uid://dkuvtg0ccy0wp"
+GameOver="uid://bcjlkv15aimdb"
 
 [display]
 
@@ -34,6 +35,9 @@ export/convert_text_resources_to_binary=false
 
 mp3={
 &"loop": true
+}
+wav={
+&"edit/loop_mode": 1
 }
 
 [input]

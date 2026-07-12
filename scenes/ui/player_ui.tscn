@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://d3335ax4qj8ah"]
+
+[ext_resource type="Script" uid="uid://dxi3p15gygj3d" path="res://scripts/player_ui.gd" id="1_2sf84"]
+[ext_resource type="FontFile" uid="uid://b8f157ou1mdwg" path="res://assets/graphics/UI/Tiny5-Regular.ttf" id="2_jg20v"]
+
+[node name="PlayerUI" type="CanvasLayer" unique_id=2043294777]
+script = ExtResource("1_2sf84")
+
+[node name="GoldContainer" type="HBoxContainer" parent="." unique_id=1147719390]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GoldLabel" type="Label" parent="GoldContainer" unique_id=1235850140]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_jg20v")
+theme_override_font_sizes/font_size = 64
+text = "Гроши: "
+
+[node name="GoldAmount" type="Label" parent="GoldContainer" unique_id=1842743776]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_jg20v")
+theme_override_font_sizes/font_size = 64
+text = "10.0"
+
+[node name="ReinforcementsContainer" type="HBoxContainer" parent="." unique_id=647472345]
+offset_left = -1.0
+offset_top = 86.0
+offset_right = 331.0
+offset_bottom = 158.0
+
+[node name="ReinforcementsLabel" type="Label" parent="ReinforcementsContainer" unique_id=604048106]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_jg20v")
+theme_override_font_sizes/font_size = 64
+text = "Укрепления: "
+
+[node name="ReinforcementsAmount" type="Label" parent="ReinforcementsContainer" unique_id=32688343]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_jg20v")
+theme_override_font_sizes/font_size = 64
+text = "10.0"
+
+[node name="QuotaContainer" type="HBoxContainer" parent="." unique_id=1866693415]
+offset_left = 1.0
+offset_top = 165.0
+offset_right = 333.0
+offset_bottom = 237.0
+
+[node name="QuotaLabel" type="Label" parent="QuotaContainer" unique_id=1047130008]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_jg20v")
+theme_override_font_sizes/font_size = 64
+text = "Время до квоты: "
+
+[node name="QuotaAmount" type="Label" parent="QuotaContainer" unique_id=40795063]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_jg20v")
+theme_override_font_sizes/font_size = 64
+text = "10.0"

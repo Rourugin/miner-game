@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cgcr8wvk6x25b" path="res://assets/graphics/player/idle.png" id="2_lvxji"]
 [ext_resource type="Texture2D" uid="uid://dbp3b7t8em1yr" path="res://assets/graphics/player/hit.png" id="2_p47bc"]
 [ext_resource type="Texture2D" uid="uid://bnf2kuesokoqg" path="res://assets/graphics/player/run.png" id="3_p47bc"]
+[ext_resource type="Script" uid="uid://6ya0v7kaf5p7" path="res://scripts/player_camera.gd" id="5_p47bc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lvxji"]
 atlas = ExtResource("2_p47bc")
@@ -208,3 +209,4 @@ shape = SubResource("RectangleShape2D_tuyoq")
 zoom = Vector2(3, 3)
 limit_left = -250
 limit_right = 250
+script = ExtResource("5_p47bc")

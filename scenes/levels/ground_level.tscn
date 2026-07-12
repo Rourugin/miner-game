@@ -137,7 +137,7 @@ stream = SubResource("AudioStreamWAV_n37v5")
 [node name="ElevatorPlayer" type="AudioStreamPlayer2D" parent="AudioPlayers" parent_id_path=PackedInt32Array(1295250127) index="1" unique_id=1525693910]
 stream = ExtResource("4_wp4qn")
 
-[node name="PauseMenu" parent="CanvasLayer" parent_id_path=PackedInt32Array(1550794939) index="0" unique_id=491514823]
+[node name="PauseMenu" parent="PauseLayer" parent_id_path=PackedInt32Array(1550794939) index="0" unique_id=491514823]
 anchors_preset = 15
 anchor_left = 0.0
 anchor_top = 0.0
@@ -153,4 +153,4 @@ scale = Vector2(1, 1)
 [connection signal="body_entered" from="Areas/MineArea" to="." method="_on_mine_area_body_entered"]
 
 [editable path="Player"]
-[editable path="CanvasLayer/PauseMenu"]
+[editable path="PauseLayer/PauseMenu"]

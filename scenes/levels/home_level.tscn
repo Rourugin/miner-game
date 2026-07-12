@@ -165,14 +165,14 @@ shape = SubResource("RectangleShape2D_0fxyc")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioPlayers" parent_id_path=PackedInt32Array(1295250127) index="0" unique_id=1104825173]
 stream = ExtResource("4_5wfx5")
 
-[node name="PauseMenu" parent="CanvasLayer" parent_id_path=PackedInt32Array(1550794939) index="0" unique_id=491514823]
+[node name="PauseMenu" parent="PauseLayer" parent_id_path=PackedInt32Array(1550794939) index="0" unique_id=491514823]
 offset_left = 337.92
 offset_top = 182.52002
 offset_right = 1585.9199
 offset_bottom = 884.52
 scale = Vector2(1, 1)
 
-[node name="MarginContainer" parent="CanvasLayer/PauseMenu" index="1" unique_id=879944296]
+[node name="MarginContainer" parent="PauseLayer/PauseMenu" index="1" unique_id=879944296]
 metadata/_edit_group_ = true
 
 [connection signal="body_entered" from="Areas/GroundArea" to="." method="_on_ground_area_body_entered"]
@@ -187,6 +187,7 @@ metadata/_edit_group_ = true
 [connection signal="body_entered" from="Areas/UpgradeAreas/DurationArea" to="." method="_on_duration_area_body_entered"]
 [connection signal="body_exited" from="Areas/UpgradeAreas/DurationArea" to="." method="_on_duration_area_body_exited"]
 [connection signal="body_entered" from="Areas/QuotaArea" to="." method="_on_quota_area_body_entered"]
+[connection signal="body_exited" from="Areas/QuotaArea" to="." method="_on_quota_area_body_exited"]
 
 [editable path="Player"]
-[editable path="CanvasLayer/PauseMenu"]
+[editable path="PauseLayer/PauseMenu"]

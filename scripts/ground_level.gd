@@ -21,7 +21,6 @@ func _ready() -> void:
 
 func _on_home_area_body_entered(_body: Node2D) -> void:
 	door_player.play()
-	await door_player.finished
 	get_tree().call_deferred("change_scene_to_packed", HOME_SCENE)
 
 func _prepare() -> void:
@@ -31,5 +30,4 @@ func _prepare() -> void:
 
 func _on_mine_area_body_entered(_body: Node2D) -> void:
 	elevator_player.play()
-	#await elevator_player.finished
 	get_tree().call_deferred("change_scene_to_packed", MINE_SCENE)

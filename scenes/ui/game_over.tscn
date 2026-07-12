@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://bcjlkv15aimdb"]
+
+[ext_resource type="Shader" uid="uid://ca2cce7mabxgc" path="res://scenes/ui/pause_menu.gdshader" id="1_60xr3"]
+[ext_resource type="Script" uid="uid://da8rtusimqdda" path="res://scripts/game_over.gd" id="1_x6o8e"]
+[ext_resource type="FontFile" uid="uid://b8f157ou1mdwg" path="res://assets/graphics/UI/Tiny5-Regular.ttf" id="3_vfrx6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fu4wh"]
+shader = ExtResource("1_60xr3")
+shader_parameter/amount = 5.0
+
+[node name="GameOver" type="CanvasLayer" unique_id=1924081337]
+script = ExtResource("1_x6o8e")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=909393220]
+material = SubResource("ShaderMaterial_fu4wh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1486.0
+offset_top = -652.0
+offset_right = 1074.0
+offset_bottom = 598.0
+color = Color(0.57266927, 6.3773246e-07, 1.92523e-07, 1)
+
+[node name="GOLabel" type="Label" parent="." unique_id=543765677]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.0
+offset_right = 46.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.46666667, 0, 0, 0.8)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("3_vfrx6")
+theme_override_font_sizes/font_size = 256
+text = "Ты проиграл"
+
+[node name="ScoreContainer" type="HBoxContainer" parent="." unique_id=159305296]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -234.0
+offset_top = -254.0
+offset_right = 234.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="ScoreLabel" type="Label" parent="ScoreContainer" unique_id=404191280]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_vfrx6")
+theme_override_font_sizes/font_size = 128
+text = "Счёт: "
+
+[node name="ScoreAmount" type="Label" parent="ScoreContainer" unique_id=1765575509]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_vfrx6")
+theme_override_font_sizes/font_size = 128
+text = "10"
+
+[node name="BtnContainer" type="HBoxContainer" parent="." unique_id=1031046609]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="NewBtn" type="Button" parent="BtnContainer" unique_id=1881899442]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_vfrx6")
+theme_override_font_sizes/font_size = 160
+text = "Новая Игра"
+
+[node name="QuitBtn" type="Button" parent="BtnContainer" unique_id=540410491]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_vfrx6")
+theme_override_font_sizes/font_size = 160
+text = "Выйти"
+
+[connection signal="pressed" from="BtnContainer/NewBtn" to="." method="_on_new_btn_pressed"]
+[connection signal="pressed" from="BtnContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]

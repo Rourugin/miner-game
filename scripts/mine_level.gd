@@ -179,13 +179,11 @@ func _spawn_staircase(dir: Vector2) -> void:
 	
 func _create_timer() -> void:
 	var duration: float = RandomNumberGenerator.new().randf_range(180.0, 300.0) + Globals.extra_duration
-	earthquake_timer.start(duration)
+	earthquake_timer.start(15)
 
 func _on_earthquake_timer_timeout() -> void:
-	print("you lost")
-	print(Globals.score)
+	Globals.game_over()
 
 func _on_elevator_body_entered(_body: Node2D) -> void:
 	elevator_player.play()
-	await elevator_player.finished
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")
