@@ -17,6 +17,8 @@ const CELL_SIZE: int = 32
 @onready var building_player: AudioStreamPlayer2D = $AudioPlayers/BuildingPlayer
 @onready var elevator_player: AudioStreamPlayer2D = $AudioPlayers/ElevatorPlayer
 
+var ten_percant_of_duration: int
+
 
 func _ready() -> void:
 	_build_all_reinforcements()
@@ -31,6 +33,8 @@ func _process(_delta: float) -> void:
 		_build_reinforcement()
 	if Input.is_action_just_pressed("pause"):
 		pause_game()
+	if roundi(earthquake_timer.time_left) == ten_percant_of_duration:
+		player_camera.trigger_shake()
 
 func _generate_ores() -> void:
 	for ore in ores.get_children():
@@ -179,11 +183,13 @@ func _spawn_staircase(dir: Vector2) -> void:
 	
 func _create_timer() -> void:
 	var duration: float = RandomNumberGenerator.new().randf_range(180.0, 300.0) + Globals.extra_duration
-	earthquake_timer.start(15)
+	ten_percant_of_duration = roundi(duration * 0.1)
+	earthquake_timer.start(duration)
 
 func _on_earthquake_timer_timeout() -> void:
 	Globals.game_over()
 
 func _on_elevator_body_entered(_body: Node2D) -> void:
 	elevator_player.play()
+	await elevator_player.finished
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/ground_level.tscn")

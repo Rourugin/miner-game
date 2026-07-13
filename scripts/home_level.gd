@@ -14,6 +14,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and entered_area != null:
 		_interact(entered_area)
+	if Input.is_action_just_pressed("pause"):
+		pause_game()
 
 func _interact(area: Area2D) -> void:
 	match area.name:
@@ -23,13 +25,13 @@ func _interact(area: Area2D) -> void:
 				Globals.pickaxe_damage += 1
 				Globals.prices[0] *= 3.0
 				Globals.score += 20
+				$HomeUI/PickaxeContainer/PickaxeCosts.text = str(Globals.prices[0])
 			elif Globals.gold < Globals.prices[0]:
 				print("Not enough money")
 		"ReinforcementArea":
 			if Globals.gold >= Globals.prices[1]:
 				Globals.gold -= Globals.prices[1]
 				Globals.reinforcements += 1
-				print(Globals.reinforcements)
 			elif Globals.gold < Globals.prices[1]:
 				print("Not enough money")
 		"VisionArea":
@@ -38,7 +40,7 @@ func _interact(area: Area2D) -> void:
 				Globals.prices[2] *= 1.25
 				Globals.zoom -= Vector2(1.5, 1.5)
 				Globals.score += 12
-				print(Globals.zoom)
+				$HomeUI/VisionContainer/VisionCosts.text = str(Globals.prices[2])
 			elif Globals.gold < Globals.prices[2]:
 				print("Not enough money")
 		"SpeedArea":
@@ -47,7 +49,7 @@ func _interact(area: Area2D) -> void:
 				Globals.prices[3] *= 1.5
 				Globals.speed += 10.0
 				Globals.score += 10
-				print(Globals.speed)
+				$HomeUI/SpeedContainer/SpeedCosts.text = str(Globals.prices[3])
 			elif Globals.gold < Globals.prices[3]:
 				print("Not enough money")
 		"DurationArea":
@@ -56,15 +58,16 @@ func _interact(area: Area2D) -> void:
 				Globals.prices[4] *= 2.0
 				Globals.extra_duration += 10.0
 				Globals.score += 15
-				print(Globals.extra_duration)
+				$HomeUI/DurationContainer/DurationCosts.text = str(Globals.prices[4])
 			elif Globals.gold < Globals.prices[4]:
 				print("Not enough money")
 		"QuotaArea":
 			if Globals.gold >= Globals.quota:
 				Globals.gold -= Globals.quota
 				Globals.quota *= 1.36
-				Globals.score += 17
+				Globals.score += 30
 				Globals.start_quota_timer()
+				$HomeUI/QuotaContainer/QuotaCosts.text = str(Globals.quota)
 			elif Globals.gold < Globals.quota:
 				print("Not enough money")
 

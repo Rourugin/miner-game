@@ -29,6 +29,7 @@ var quota_timer: Timer = Timer.new()
 func _ready() -> void:
 	add_child(quota_timer)
 	set_default()
+	quota_timer.timeout.connect(game_over)
 
 func _process(_delta: float) -> void:
 	stat_change.emit()
@@ -48,7 +49,7 @@ func _get_resources() -> Array[OreData]:
 		for i in range(resource.rarity):
 			resources_arr.append(resource)
 	return resources_arr
-
+	
 func start_quota_timer() -> void:
 	quota_timer.start(267)
 
@@ -67,4 +68,3 @@ func set_default() -> void:
 	prices = [5.0, 20.0, 15.0, 10.0, 6.7]
 	blocked_cells_coordinate = [Vector2i(-15, -7), Vector2i(-14, -7), Vector2i(-13, -7)]
 	start_quota_timer()
-	

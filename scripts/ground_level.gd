@@ -19,6 +19,10 @@ func _ready() -> void:
 		glob_pos = $Markers/GroundMineMarker.global_position
 	player.global_position = glob_pos
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		pause_game()
+
 func _on_home_area_body_entered(_body: Node2D) -> void:
 	door_player.play()
 	get_tree().call_deferred("change_scene_to_packed", HOME_SCENE)
@@ -30,4 +34,5 @@ func _prepare() -> void:
 
 func _on_mine_area_body_entered(_body: Node2D) -> void:
 	elevator_player.play()
+	await elevator_player.finished
 	get_tree().call_deferred("change_scene_to_packed", MINE_SCENE)

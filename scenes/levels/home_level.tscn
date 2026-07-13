@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dpdqrs71jmdcj" path="res://assets/graphics/tilemaps/home.png" id="2_cm4j4"]
 [ext_resource type="Script" uid="uid://cmr2qi5k27xu5" path="res://scripts/home_level.gd" id="2_wk3sr"]
 [ext_resource type="AudioStream" uid="uid://c8y0gwnhq67jr" path="res://assets/audio/open_door.wav" id="4_5wfx5"]
+[ext_resource type="FontFile" uid="uid://b8f157ou1mdwg" path="res://assets/graphics/UI/Tiny5-Regular.ttf" id="5_ad2a8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cm4j4"]
 texture = ExtResource("2_cm4j4")
@@ -164,6 +165,130 @@ shape = SubResource("RectangleShape2D_0fxyc")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioPlayers" parent_id_path=PackedInt32Array(1295250127) index="0" unique_id=1104825173]
 stream = ExtResource("4_5wfx5")
+
+[node name="HomeUI" type="Control" parent="." index="6" unique_id=1347696907]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PickaxeContainer" type="HBoxContainer" parent="HomeUI" index="0" unique_id=1319406247]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -74.0
+offset_right = 13.0
+offset_bottom = -34.0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="PickaxeLabel" type="Label" parent="HomeUI/PickaxeContainer" index="0" unique_id=2126846070]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "Цена: "
+
+[node name="PickaxeCosts" type="Label" parent="HomeUI/PickaxeContainer" index="1" unique_id=521366546]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "5.0"
+
+[node name="ReinforcementsContainer" type="HBoxContainer" parent="HomeUI" index="1" unique_id=1981991740]
+layout_mode = 0
+offset_left = 47.0
+offset_top = -73.0
+offset_right = 94.0
+offset_bottom = -33.0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="ReinforcementsLabel" type="Label" parent="HomeUI/ReinforcementsContainer" index="0" unique_id=1036675210]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "Цена: "
+
+[node name="ReinforcementsCosts" type="Label" parent="HomeUI/ReinforcementsContainer" index="1" unique_id=1034816154]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "20.0"
+
+[node name="VisionContainer" type="HBoxContainer" parent="HomeUI" index="2" unique_id=773464870]
+layout_mode = 0
+offset_left = 125.0
+offset_top = -73.0
+offset_right = 172.0
+offset_bottom = -33.0
+
+[node name="VisionLabel" type="Label" parent="HomeUI/VisionContainer" index="0" unique_id=1197850065]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "Цена: "
+
+[node name="VisionCosts" type="Label" parent="HomeUI/VisionContainer" index="1" unique_id=1245242552]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "15.0"
+
+[node name="SpeedContainer" type="HBoxContainer" parent="HomeUI" index="3" unique_id=1555639469]
+layout_mode = 0
+offset_left = 204.0
+offset_top = -73.0
+offset_right = 251.0
+offset_bottom = -33.0
+
+[node name="SpeedLabel" type="Label" parent="HomeUI/SpeedContainer" index="0" unique_id=1955416416]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "Цена: "
+
+[node name="SpeedCosts" type="Label" parent="HomeUI/SpeedContainer" index="1" unique_id=286936839]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "10.0"
+
+[node name="DurationContainer" type="HBoxContainer" parent="HomeUI" index="4" unique_id=975254940]
+layout_mode = 0
+offset_left = 285.0
+offset_top = -77.0
+offset_right = 332.0
+offset_bottom = -37.0
+
+[node name="DurationLabel" type="Label" parent="HomeUI/DurationContainer" index="0" unique_id=1670000465]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "Цена: "
+
+[node name="DurationCosts" type="Label" parent="HomeUI/DurationContainer" index="1" unique_id=1210575080]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "6.7"
+
+[node name="QuotaContainer" type="HBoxContainer" parent="HomeUI" index="5" unique_id=2113490808]
+layout_mode = 0
+offset_left = 411.0
+offset_top = -51.0
+offset_right = 458.0
+offset_bottom = -11.0
+
+[node name="QuotaLabel" type="Label" parent="HomeUI/QuotaContainer" index="0" unique_id=923382699]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "Квота: "
+
+[node name="QuotaCosts" type="Label" parent="HomeUI/QuotaContainer" index="1" unique_id=320296390]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ad2a8")
+theme_override_font_sizes/font_size = 8
+text = "40.0"
 
 [node name="PauseMenu" parent="PauseLayer" parent_id_path=PackedInt32Array(1550794939) index="0" unique_id=491514823]
 offset_left = 337.92
